@@ -10,6 +10,12 @@
       padding: 0;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
+      height: 100vh;
+      background: linear-gradient(45deg, #1c1c1c, #333333);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px; 
     }
 
     .hexagon-grid {
@@ -19,13 +25,14 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #0a0a0a;
+      background-color: rgba(10, 10, 10, 0.8);
+      transform-style: preserve-3d;
     }
 
     .hexagon {
       position: absolute;
       width: 120px;
-      height: 120px;
+      height: 100px;
       background-color: rgba(255, 255, 255, 0.1);
       clip-path: polygon(
         50% 0%,
@@ -35,13 +42,23 @@
         0% 75%,
         0% 25%
       );
-      animation: floatHexagons 15s linear infinite;
+      animation: floatHexagons 20s infinite linear;
+      transform-origin: center;
     }
 
     @keyframes floatHexagons {
-      0% { transform: translateY(100vh) scale(1); opacity: 0.3; }
-      50% { transform: translateY(50vh) scale(1.2); opacity: 0.7; }
-      100% { transform: translateY(-100vh) scale(1); opacity: 0.3; }
+      0% {
+        transform: translateZ(0) rotateY(0deg) translateY(100vh) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateZ(50px) rotateY(180deg) translateY(50vh) scale(1.2);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateZ(0) rotateY(360deg) translateY(-100vh) scale(1);
+        opacity: 0.3;
+      }
     }
 
     .container {
@@ -93,7 +110,7 @@
     .completed p {
       color: #bbbbbb;
       margin-bottom: 20px;
-      max-width: 600px;
+      max-width: 200px;
       margin: 0 auto;
     }
 
@@ -124,7 +141,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       padding: 20px;
-      width: 300px;
+      width: 200px;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
@@ -150,6 +167,61 @@
       color: #666;
       text-align: center;
     }
+    #nav2{
+    display: flex;
+    height: 7%;
+    width: 100%;
+    position: fixed;
+    left: 21%;
+    z-index: 99;
+    padding: 0px 30px;
+    margin-right: 280px;
+}
+
+#nav2>h3{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 22px;
+}
+#nav2> button a {
+    color: #fff;
+    text-decoration: none;
+}
+#nav2>button {
+    padding: 12px 22px;
+    border-radius: 50px;
+    background-color: #000;
+    border: none;
+}
+
+#nav1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 7%;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    padding: 0px 30px;
+    margin-left: 580px;
+    margin-top: 10px;
+}
+#nav1>h3{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 22px;
+}
+#nav1> button a {
+    color: #fff;
+    text-decoration: none;
+}
+#nav1>button {
+    padding: 12px 22px;
+    border-radius: 50px;
+    background-color: #000;
+  
+    border: none;
+}
     .mentor-card button {
       background-color: #0077b5;
       color: white;
@@ -159,6 +231,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     .mentor-card button a {
       background-color: #0077b5;
       color: white;
@@ -173,6 +246,7 @@
     .mentor-card button:hover a {
       background-color: #005582;
     }
+
     .mentor-card button:hover {
       background-color: #005582;
     }
@@ -186,14 +260,6 @@
   </style>
 </head>
 <body>
-  <div class="hexagon-grid">
-    <div class="hexagon" style="top: 10%; left: 15%; animation-duration: 12s;"></div>
-    <div class="hexagon" style="top: 30%; left: 45%; animation-duration: 28s;"></div>
-    <div class="hexagon" style="top: 50%; left: 75%; animation-duration: 12s;"></div>
-    <div class="hexagon" style="top: 70%; left: 25%; animation-duration: 16s;"></div>
-    <div class="hexagon" style="top: 90%; left: 60%; animation-duration: 20s;"></div>
-  </div>
-
   <div class="container">
     <div id="loading">
       <svg viewBox="0 0 100 100">
@@ -202,44 +268,46 @@
       </svg>
     </div>
     <div id="completed" style="display: none;">
-      <h1>FREELANCE FREEDOM AT YOUR FINGERTIPS</h1>
-      <p>Find skilled freelancers for your projects, from writing to web development on our platform - where talent meets opportunity!</p>
-      <div class="arrow" onclick="scrollToMentor()">&#8595;</div>
+      <h1>HALL OF FRAME</h1>
+      <p>Find Skilled Developers for your projects, from writing to web development on our platform - where talent meets opportunity!</p>
+      <div class="arrow">&#8594;</div>
+      <p>Join our dynamic leadership team and play a pivotal role in shaping the future of our organization. </p>
+      <p>As the Chief of Staff, you’ll drive strategic initiatives, optimize operations, and work closely with executive leadership to achieve our ambitious goals.</p>
+        <p>Ready to make an impact</p>
+        <div id="nav2">
+          <button><a href="#contact">Apply</a></button>
+      </div>
     </div>
   </div>
 
   <div class="mentor-section" id="mentor-section" style="display: none;">
-    <h2 style="text-align: center; margin-bottom: 30px;">Chief of Staff's Members</h2>
+    <div id="nav1">
+      <button><a href="#contact">Apply</a></button>
+  </div>
+    <h2 style="text-align: center; margin-bottom: 30px;">Chief Of Staff's</h2>
     <div class="mentor-cards">
-      <!-- <div class="mentor-card">
-        <img src="srikrupa.jpg" alt="Mentor Image">
-        <h3>Jane Doe</h3>
-        <p>Expert in Web Development</p>
-        <button><a href="https://www.linkedin.com/in/prince-25b2b2301/">LinkedIn</a></button>
-      </div> -->
       <div class="mentor-card">
-        <img src="/images/monika.jpeg" alt="Mentor Image">
+        <img src="images/monika.jpeg" alt="Mentor Image">
         <h3>Mounika Vemulapalli</h3>
         <p>Mern Stack Developer</p>
         <button> <a href="https://www.linkedin.com/in/mounika-vemulapalli-540615138/">LinkedIn</a></button>
       </div>
       <div class="mentor-card">
-        <img src="/images/himanshu.jpeg" alt="Mentor Image">
+        <img src="images/himanshu.jpeg" alt="Mentor Image">
         <h3>Himanshu Kumar</h3>
         <p>React Js Developer</p>
         <button> <a href="https://www.linkedin.com/in/himanshu-kumar-singh-0h000000021/">LinkedIn</a></button>
       </div>
       <div class="mentor-card">
-        <img src="/images/1223.jpeg" alt="Mentor Image">
+        <img src="images/1223.jpeg" alt="Mentor Image">
         <h3>Prince</h3>
         <p>Full Stack Developer</p>
         <button> <a href="https://www.linkedin.com/in/prince-25b2b2301/">LinkedIn</a></button>
       </div>
+     
     </div>
   </div>
-
   <script>
-    // Progress Logic
     let percentage = 0;
     const progressCircle = document.getElementById("progress-circle");
     const percentageText = document.getElementById("percentage-text");
@@ -259,40 +327,6 @@
         document.getElementById("mentor-section").style.display = "block";
       }
     }, 50);
-    function scrollToMentor() {
-      document.getElementById("mentor-section").style.display = "block";
-      document.getElementById("mentor-section").scrollIntoView({ behavior: "smooth" });
-    }
-    // Smooth scroll on arrow click
-    document.getElementById("arrow").addEventListener("click", () => {
-      document.getElementById("mentor-section").scrollIntoView({ behavior: "smooth" });
-    });
   </script>
-
-  <!-- <script>
-    let percentage = 0;
-    const progressCircle = document.getElementById("progress-circle");
-    const percentageText = document.getElementById("percentage-text");
-
-    const interval = setInterval(() => {
-      if (percentage < 100) {
-        percentage++;
-        const dashArray = 283;
-        const dashOffset = dashArray - (dashArray * percentage) / 100;
-        progressCircle.style.strokeDashoffset = dashOffset;
-        percentageText.textContent = `${percentage}%`;
-      } else {
-        clearInterval(interval);
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("completed").style.display = "block";
-      }
-      
-    }, 100);
-
-    function scrollToMentor() {
-      document.getElementById("mentor-section").style.display = "block";
-      document.getElementById("mentor-section").scrollIntoView({ behavior: "smooth" });
-    }
-  </script> -->
 </body>
 </html>
